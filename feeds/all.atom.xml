@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>静如处子，动若脱兔</title><link href="http://linqingxiang.com/" rel="alternate"></link><link href="http://linqingxiang.com/feeds/all.atom.xml" rel="self"></link><id>http://linqingxiang.com/</id><updated>2015-12-26T14:12:00+08:00</updated><entry><title>Git中的submodule命令</title><link href="http://linqingxiang.com/git/git-submodule.html" rel="alternate"></link><updated>2015-12-26T14:12:00+08:00</updated><author><name>woniu17</name></author><id>tag:linqingxiang.com,2015-12-26:git/git-submodule.html</id><summary type="html">&lt;p&gt;本文链接：&lt;a href="http://linqingxiang.com/git/git-submodule.html"&gt;Git中的&lt;code&gt;submodule&lt;/code&gt;命令&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本文以代码库&lt;a href="https://github.com/woniu17/woniu17-pelican" target="_blank"&gt;https://github.com/woniu17/woniu17-pelican&lt;/a&gt;为例,
+说明Git中&lt;code&gt;submodule&lt;/code&gt;命令的使用
+该代码库中包含子模块&lt;code&gt;pelican-themes/niu-x2-sidebar&lt;/code&gt;, &lt;code&gt;pelican-plugin&lt;/code&gt;以及&lt;code&gt;publish&lt;/code&gt;，每个子模块实际上是一个代码库，
+由该代码库中的&lt;code&gt;.gitmodules&lt;/code&gt;文件中的内容可以看出:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[submodule &amp;quot;pelican-themes/niu-x2-sidebar&amp;quot;]
+    path = pelican-themes/niu-x2-sidebar
+    url = https://github.com/qingtech/niu-x2-sidebar.git
+[submodule &amp;quot;pelican-plugins&amp;quot;]
+    path = pelican-plugins
+    url = https://github.com/qingtech/pelican-plugins.git
+[submodule &amp;quot;publish&amp;quot;]
+    path = publish
+    url = https://github.com/woniu17/woniu17.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;clone带有子模块的代码库&lt;/h3&gt;
+&lt;h4&gt;下载主代码库&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;git clone https://github.com/woniu17/woniu17/woniu17-pelican.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;进入代码库的主目录&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;woniu17-pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;下载该代码库中的所有子模块&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;git submodule update --init --recursive
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;添加子模块&lt;code&gt;publish-for-gitcafe&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;在代码库的主目录下执行以下命令：&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;git submodule add https://gitcafe.com/woniu17/woniu17-pelican.git publish-for-gitcafe
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上述命令会在&lt;code&gt;.gitmodules&lt;/code&gt;文件添加以下内容，并会将子模块代码库克隆到publish-for-gitcafe目录下&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[submodule &amp;quot;publish-for-gitcafe&amp;quot;]
+    path = publish-for-gitcafe
+    url = https://gitcafe.com/woniu17/woniu17-pelican.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;删除子模块&lt;code&gt;publish-for-gitcafe&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;将&lt;code&gt;.gitmodules&lt;/code&gt;文件中的相关内容删除，即删除以下几行内容:&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[submodule &amp;quot;publish-for-gitcafe&amp;quot;]
+    path = publish-for-gitcafe
+    url = https://gitcafe.com/woniu17/woniu17-pelican.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;在代码库主目录下执行以下命令：&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;git rm --cached publish-for-gitcafe
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;删除目录&lt;code&gt;publish-for-gitcafe&lt;/code&gt;&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;rm -rf publish-for-gitcafe&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;本文参考：&lt;a href="http://blog.csdn.net/wangjia55/article/details/24400501" target="_blank"&gt;http://blog.csdn.net/wangjia55/article/details/24400501&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>在联想G450上安装无线驱动网卡(Debian7.8)</title><link href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html" rel="alternate"></link><updated>2015-06-06T22:16:00+08:00</updated><author><name>woniu17</name></author><id>tag:linqingxiang.com,2015-06-06:linux/lenovo-G450-install-wireless-driver-on-debian.html</id><summary type="html">&lt;p&gt;本文链接：&lt;a href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html"&gt;在联想G450上安装无线驱动网卡(Debian7.8 32-bit)&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;步骤概述：&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;下载驱动&lt;/li&gt;
+&lt;li&gt;编译源码&lt;/li&gt;
+&lt;li&gt;将wl.ko复制到系统模块文件相应的位置&lt;/li&gt;
+&lt;li&gt;禁止加载冲突驱动模块&lt;/li&gt;
+&lt;li&gt;更新初始化内存盘镜像initrd.img&lt;/li&gt;
+&lt;li&gt;重启电脑，使模块加载更改生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;详细步骤：&lt;/h2&gt;
+&lt;h3&gt;下载驱动&lt;/h3&gt;
+&lt;p&gt;在&lt;a href="http://www.broadcom.com/support/?gid=1" target="_blank"&gt;http://www.broadcom.com/support/?gid=1&lt;/a&gt;
+  选择&lt;code&gt;Linuxi STA 32-bit driver&lt;/code&gt;(如果是64位系统，选择相应版本)下载到&lt;code&gt;~/Download&lt;/code&gt;文件夹
+  进入&lt;code&gt;~/Download&lt;/code&gt;文件夹，解压该文件&lt;code&gt;hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Download
+user@debian:~/Download&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir wlan
+user@debian:~/Download&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz -C wlan
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;wlan
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到&lt;code&gt;wlan&lt;/code&gt;文件夹下有&lt;code&gt;Makefile&lt;/code&gt;文件，&lt;code&gt;src&lt;/code&gt;和&lt;code&gt;lib&lt;/code&gt;两个文件夹&lt;/p&gt;
+&lt;h3&gt;编译源码&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;make clean
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="c"&gt;#或者make API=WEXT&lt;/span&gt;
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;ls 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到生成wl.ko等文件&lt;/p&gt;
+&lt;h3&gt;将wl.ko复制到系统模块文件相应的位置&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;su &lt;span class="c"&gt;#切换到root用户&lt;/span&gt;
+root@debian:/home/user/Download/wlan# cp wl.ko /lib/modules/&lt;span class="sb"&gt;`&lt;/span&gt;uname -r&lt;span class="sb"&gt;`&lt;/span&gt;/kernel/drivers/net/wireless
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意 &lt;em&gt;`uname -r`&lt;/em&gt; 中的点是ESC键下面的那个键，该命令是获取内核版本，
+  本次操作中的内核版本为3.2.0-4-686-pae，
+  这里可以直接写内核的版本号。&lt;/p&gt;
+&lt;h3&gt;禁止加载冲突驱动模块&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist ssb&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist b43&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist bcma&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;更新初始化内存盘镜像initrd.img&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;root@debian:/home/user/Download/wlan# update-initramfs -u
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;重启电脑，使模块加载更改生效，此时G450可以通过无线网卡上网了！&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3&gt;参考文献&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html" target="_blank"&gt;http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.debian.org/KernelModuleBlacklisting" target="_blank"&gt;https://wiki.debian.org/KernelModuleBlacklisting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="debian"></category><category term="linux"></category></entry><entry><title>Hello, world!</title><link href="http://linqingxiang.com/pelican/hello.html" rel="alternate"></link><updated>2015-05-29T19:54:00+08:00</updated><author><name>qingluck</name></author><id>tag:linqingxiang.com,2015-05-29:pelican/hello.html</id><summary type="html">&lt;h2&gt;Hello pelican and markdown.&lt;/h2&gt;
+&lt;h3&gt;My home page is &lt;a href="http://www.linqingxiang.com"&gt;www.linqingxiang.com&lt;/a&gt;&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;em&gt;python&lt;/em&gt;&lt;sup id="fnref:python"&gt;&lt;a class="footnote-ref" href="#fn:python" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;strong&gt;学习&lt;/strong&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Zen of Python, by Tim Peters&lt;/p&gt;
+&lt;p&gt;Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than &lt;em&gt;right&lt;/em&gt; now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;hello, python!&amp;#39;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;LaTeX&lt;sup id="fnref:latex"&gt;&lt;a class="footnote-ref" href="#fn:latex" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;公式&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;行内公式：&lt;span class="math"&gt;\(Gamma(n) = (n-1)!\quad\forall n\in\mathbb N\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;块级公式：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="math"&gt;$$ x = \dfrac{-b \pm \sqrt{b^2 -4ac}}{2a} $$&lt;/div&gt;
+&lt;h3&gt;表格&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tables&lt;/th&gt;
+&lt;th align="center"&gt;Are&lt;/th&gt;
+&lt;th align="right"&gt;Cool&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;col 3 is&lt;/td&gt;
+&lt;td align="center"&gt;right-aligned&lt;/td&gt;
+&lt;td align="right"&gt;$1600&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;col 2 is&lt;/td&gt;
+&lt;td align="center"&gt;centered&lt;/td&gt;
+&lt;td align="right"&gt;$12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;zebra stripes&lt;/td&gt;
+&lt;td align="center"&gt;are neat&lt;/td&gt;
+&lt;td align="right"&gt;$1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;流程图&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;st=&amp;gt;start: Start
+e=&amp;gt;end
+op=&amp;gt;operation: My Operation
+cond=&amp;gt;condition: Yes or No?
+
+st-&amp;gt;op-&amp;gt;cond
+cond(yes)-&amp;gt;e
+cond(no)-&amp;gt;op
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;时序图:&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Alice-&amp;gt;Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob--&amp;gt;Alice: I am good thanks!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;TODO-list&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] todo item x&lt;/li&gt;
+&lt;li&gt;[ ] todo item y&lt;/li&gt;
+&lt;li&gt;[ ] todo item z&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;快捷键&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;帮助    &lt;code&gt;Ctrl + /&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步文档    &lt;code&gt;Ctrl + S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;创建文档    &lt;code&gt;Ctrl + Alt + N&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;最大化编辑器    &lt;code&gt;Ctrl + Enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;预览文档 &lt;code&gt;Ctrl + Alt + Enter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文档管理    &lt;code&gt;Ctrl + O&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;系统菜单    &lt;code&gt;Ctrl + M&lt;/code&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:python"&gt;
+&lt;p&gt;是一种面向对象、解释型计算机程序设计语言，由Guido van Rossum于1989年底发明，第一个公开发行版发行于1991年，Python 源代码同样遵循 GPL(GNU General Public License)协议。&lt;a href="http://baike.baidu.com/view/21087.htm" target="_blank"&gt;详情&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:python" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:latex"&gt;
+&lt;p&gt;是一种基于ΤΕΧ的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发。&lt;a href="http://baike.baidu.com/view/769333.htm" target="_blank"&gt;详情&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:latex" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+    
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="pelican"></category><category term="markdown"></category></entry></feed>

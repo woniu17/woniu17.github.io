@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>在联想G450上安装无线驱动网卡(Debian7.8) - 静如处子，动若脱兔</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="http://linqingxiang.com/theme/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="http://linqingxiang.com/theme/font-icons/style.min.css" type="text/css" />
+        <link rel="stylesheet" href="http://linqingxiang.com/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html" />
+        <script type="text/javascript">window.onload=function(){};</script>
+        <!--[if lt IE 9]>
+            <script src="http://linqingxiang.com/theme/js/html5shiv.js"></script>
+            <script src="http://linqingxiang.com/theme/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body> 
+        <div id="body-header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://linqingxiang.com">
+                            <i class="icon-home"></i>静如处子，动若脱兔
+                        </a>
+                    </div>
+                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/about.html" title="about me">
+                                <i class="icon-anchor"></i>关于</a>
+                            </li>
+                            <li><a href="/todo.html" title="TODO">
+                                <i class="icon-rocket"></i>待办</a>
+                            </li>
+                            <li><a href="/tag/" title="tags">
+                                <i class="icon-tag"></i>标签</a>
+                            </li>
+                        <!-- category dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-folder-open"></i>分类<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="http://linqingxiang.com/git/index.html">
+                                   <i class="icon-folder-close"></i>Git
+                                      (1)</a></li>
+                               <li><a href="http://linqingxiang.com/linux/index.html">
+                                   <i class="icon-folder-close"></i>Linux
+                                      (1)</a></li>
+                               <li><a href="http://linqingxiang.com/pelican/index.html">
+                                   <i class="icon-folder-close"></i>Pelican
+                                      (1)</a></li>
+                           </ul>
+                        </li>
+                        <!--  self defined dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                               <i class="icon-archive"></i>存档<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="/archives.html" title="archives order by publish time">
+                                 <i class="icon-calendar"></i>存档 (按发布时间)</a>
+                               </li>
+                               <li><a href="/archives_updatedate.html" title="archives order by modify time">
+                                 <i class="icon-pencil"></i>存档 (按修改时间)</a>
+                               </li>
+                           </ul>
+                        </li>
+                        </ul>
+                        
+                        <!-- right nav bar -->
+                        <ul class="nav navbar-nav navbar-right">
+                        <!-- google custom search -->
+                        <li>
+                        <div id="niu2-cse-wrapper">
+                            <div id="niu2-cse-header-box" class="navbar-form navbar-nav">
+                                <form action="http://google.com/cse">
+                                    <input type="hidden" name="cx" value="000541811106443708772:dked6ziq4qq" />
+                                    <input type="hidden" name="ie" value="UTF-8" />
+                                    <div class="form-group">
+                                        <input id="niu2-cse-search-input" class="niu2-cse-header form-control" 
+                                            type="text" name="q" 
+                                            placeholder="按回车开始搜索 ..."/>
+                                    </div>
+                                </form>
+                           </div>
+                           <div id="niu2-cse-ctrl-box" class="navbar-nav">
+                            <i id="niu2-cse-search-image" class="icon-search navbar-nav"></i><span id="niu2-cse-search-text">搜索</span>
+                           </div>
+                       </div>
+                       </li>
+                       </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="body-content">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 id="content-heading">在联想G450上安装无线驱动网卡(Debian7.8)</h1>
+            </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <p>本文链接：<a href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html">在联想G450上安装无线驱动网卡(Debian7.8 32-bit)</a></p>
+<h2>步骤概述：</h2>
+<ol>
+<li>下载驱动</li>
+<li>编译源码</li>
+<li>将wl.ko复制到系统模块文件相应的位置</li>
+<li>禁止加载冲突驱动模块</li>
+<li>更新初始化内存盘镜像initrd.img</li>
+<li>重启电脑，使模块加载更改生效</li>
+</ol>
+<h2>详细步骤：</h2>
+<h3>下载驱动</h3>
+<p>在<a href="http://www.broadcom.com/support/?gid=1" target="_blank">http://www.broadcom.com/support/?gid=1</a>
+  选择<code>Linuxi STA 32-bit driver</code>(如果是64位系统，选择相应版本)下载到<code>~/Download</code>文件夹
+  进入<code>~/Download</code>文件夹，解压该文件<code>hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz</code></p>
+<div class="codehilite"><pre>user@debian:~<span class="nv">$ </span><span class="nb">cd</span> ~/Download
+user@debian:~/Download<span class="nv">$ </span>mkdir wlan
+user@debian:~/Download<span class="nv">$ </span>tar -zxvf hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz -C wlan
+user@debian:~/Download/wlan<span class="nv">$ </span><span class="nb">cd </span>wlan
+user@debian:~/Download/wlan<span class="nv">$ </span>ls
+</pre></div>
+
+
+<p>可以看到<code>wlan</code>文件夹下有<code>Makefile</code>文件，<code>src</code>和<code>lib</code>两个文件夹</p>
+<h3>编译源码</h3>
+<div class="codehilite"><pre>user@debian:~/Download/wlan<span class="nv">$ </span>make clean
+user@debian:~/Download/wlan<span class="nv">$ </span>make <span class="c">#或者make API=WEXT</span>
+user@debian:~/Download/wlan<span class="nv">$ </span>ls 
+</pre></div>
+
+
+<p>可以看到生成wl.ko等文件</p>
+<h3>将wl.ko复制到系统模块文件相应的位置</h3>
+<div class="codehilite"><pre>user@debian:~/Download/wlan<span class="nv">$ </span>su <span class="c">#切换到root用户</span>
+root@debian:/home/user/Download/wlan# cp wl.ko /lib/modules/<span class="sb">`</span>uname -r<span class="sb">`</span>/kernel/drivers/net/wireless
+</pre></div>
+
+
+<p>注意 <em>`uname -r`</em> 中的点是ESC键下面的那个键，该命令是获取内核版本，
+  本次操作中的内核版本为3.2.0-4-686-pae，
+  这里可以直接写内核的版本号。</p>
+<h3>禁止加载冲突驱动模块</h3>
+<div class="codehilite"><pre>root@debian:/home/user/Download/wlan# <span class="nb">echo</span> <span class="s2">&quot;blacklist ssb&quot;</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# <span class="nb">echo</span> <span class="s2">&quot;blacklist b43&quot;</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# <span class="nb">echo</span> <span class="s2">&quot;blacklist bcma&quot;</span> &gt;&gt; /etc/modprobe.d/blacklist.conf
+</pre></div>
+
+
+<h3>更新初始化内存盘镜像initrd.img</h3>
+<div class="codehilite"><pre>root@debian:/home/user/Download/wlan# update-initramfs -u
+</pre></div>
+
+
+<h3>重启电脑，使模块加载更改生效，此时G450可以通过无线网卡上网了！</h3>
+<hr />
+<h3>参考文献</h3>
+<ul>
+<li><a href="http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html" target="_blank">http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html</a></li>
+<li><a href="https://wiki.debian.org/KernelModuleBlacklisting" target="_blank">https://wiki.debian.org/KernelModuleBlacklisting</a></li>
+</ul>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/linux/lenovo-G450-install-wireless-driver-on-debian.html" data-title="在联想G450上安装无线驱动网卡(Debian7.8)" data-url="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html">
+                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'xxxxxx' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
+                </div>
+
+            </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2015-06-06 22:16</div>
+                    <div class="niu2-sidebar-label"><i class="icon-pencil" style="font-size: 1.05em;"></i>最后修改:</div>
+                    <div class="niu2-sidebar-value">2015-12-26 14:11</div>
+                    <div class="niu2-sidebar-label"><i class="icon-open-folder"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://linqingxiang.com/linux/index.html">Linux</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://linqingxiang.com/tag/debian.html">debian</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://linqingxiang.com/tag/linux.html">linux</a><sup>1</sup></div>
+                </div>
+
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ul id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">在联想G450上安装无线驱动网卡(Debian7.8)</a></li>
+                        
+                        <li><a href="#content-comments">评论</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+        </div>
+
+        <div class="niu2-footer">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
+                <hr/>
+                <p>
+                    Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+                    <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="http://getbootstrap.com">Bootstrap3</a>
+                    by <a href="http://blog.atime.me">Ma Wenbao</a>, icons by 
+                    <a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+                </p>
+                <p>
+                    ©
+                            2015
+                    <a class="niu2-footer-link" href="http://linqingxiang.com">linqx</a>
+                    /                         <a class="niu2-footer-link" href="/pages/about.html" title="about me">关于</a>
+                    /                         <a class="niu2-footer-link" href="http://www.miitbeian.gov.cn/" title="备案号">闽ICP备15002376号</a>
+                </p>
+                <p class="niu2-icons">
+                    <a class="niu2-footer-icon" href="mailto: qinglucklin@foxmail.com" title="my email address">
+                        <i class="icon-envelope-o icon-lg"></i>
+                    </a>
+                    <a class="niu2-footer-icon" href="http://github.com/woniu17" title="my github page">
+                        <i class="icon-github-alt icon-lg"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var _gaq=_gaq||[];
+            _gaq.push(["_setAccount","XXXXXX"]);
+            _gaq.push(["_trackPageview"]);
+            (function(){
+                var b=document.createElement("script");
+                b.type="text/javascript";
+                b.async=true;
+                b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";
+                var a=document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(b,a)
+            })();
+        </script>
+        <div id="niu2-pygments" data-theme="github"></div>
+        <div id="niu2-lazy-load" data-loading-txt="orz 努力加载中" data-loading-icon="icon-spin icon-spinner2"></div>
+        <div id="niu2-toolbar-load" data-loading-icon="icon-spin icon-4x icon-spinner9"></div>
+        <script type="text/javascript" src="http://linqingxiang.com/theme/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="http://linqingxiang.com/theme/js/niu2.min.js"></script>
+        <script type="text/javascript" src="http://linqingxiang.com/theme/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            onContentLoaded();
+        </script>
+    </body>
+</html>

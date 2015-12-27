@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>静如处子，动若脱兔</title><link href="http://linqingxiang.com/" rel="alternate"></link><link href="http://linqingxiang.com/feeds/linux.atom.xml" rel="self"></link><id>http://linqingxiang.com/</id><updated>2015-06-06T22:16:00+08:00</updated><entry><title>在联想G450上安装无线驱动网卡(Debian7.8)</title><link href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html" rel="alternate"></link><updated>2015-06-06T22:16:00+08:00</updated><author><name>woniu17</name></author><id>tag:linqingxiang.com,2015-06-06:linux/lenovo-G450-install-wireless-driver-on-debian.html</id><summary type="html">&lt;p&gt;本文链接：&lt;a href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html"&gt;在联想G450上安装无线驱动网卡(Debian7.8 32-bit)&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;步骤概述：&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;下载驱动&lt;/li&gt;
+&lt;li&gt;编译源码&lt;/li&gt;
+&lt;li&gt;将wl.ko复制到系统模块文件相应的位置&lt;/li&gt;
+&lt;li&gt;禁止加载冲突驱动模块&lt;/li&gt;
+&lt;li&gt;更新初始化内存盘镜像initrd.img&lt;/li&gt;
+&lt;li&gt;重启电脑，使模块加载更改生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;详细步骤：&lt;/h2&gt;
+&lt;h3&gt;下载驱动&lt;/h3&gt;
+&lt;p&gt;在&lt;a href="http://www.broadcom.com/support/?gid=1" target="_blank"&gt;http://www.broadcom.com/support/?gid=1&lt;/a&gt;
+  选择&lt;code&gt;Linuxi STA 32-bit driver&lt;/code&gt;(如果是64位系统，选择相应版本)下载到&lt;code&gt;~/Download&lt;/code&gt;文件夹
+  进入&lt;code&gt;~/Download&lt;/code&gt;文件夹，解压该文件&lt;code&gt;hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Download
+user@debian:~/Download&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir wlan
+user@debian:~/Download&lt;span class="nv"&gt;$ &lt;/span&gt;tar -zxvf hybrid-v35-nodebug-pcoem-6_30_223_248.tar.gz -C wlan
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;wlan
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到&lt;code&gt;wlan&lt;/code&gt;文件夹下有&lt;code&gt;Makefile&lt;/code&gt;文件，&lt;code&gt;src&lt;/code&gt;和&lt;code&gt;lib&lt;/code&gt;两个文件夹&lt;/p&gt;
+&lt;h3&gt;编译源码&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;make clean
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;make &lt;span class="c"&gt;#或者make API=WEXT&lt;/span&gt;
+user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;ls 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以看到生成wl.ko等文件&lt;/p&gt;
+&lt;h3&gt;将wl.ko复制到系统模块文件相应的位置&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;user@debian:~/Download/wlan&lt;span class="nv"&gt;$ &lt;/span&gt;su &lt;span class="c"&gt;#切换到root用户&lt;/span&gt;
+root@debian:/home/user/Download/wlan# cp wl.ko /lib/modules/&lt;span class="sb"&gt;`&lt;/span&gt;uname -r&lt;span class="sb"&gt;`&lt;/span&gt;/kernel/drivers/net/wireless
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意 &lt;em&gt;`uname -r`&lt;/em&gt; 中的点是ESC键下面的那个键，该命令是获取内核版本，
+  本次操作中的内核版本为3.2.0-4-686-pae，
+  这里可以直接写内核的版本号。&lt;/p&gt;
+&lt;h3&gt;禁止加载冲突驱动模块&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist ssb&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist b43&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+root@debian:/home/user/Download/wlan# &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;blacklist bcma&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/modprobe.d/blacklist.conf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;更新初始化内存盘镜像initrd.img&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;root@debian:/home/user/Download/wlan# update-initramfs -u
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;重启电脑，使模块加载更改生效，此时G450可以通过无线网卡上网了！&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3&gt;参考文献&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html" target="_blank"&gt;http://wenku.baidu.com/view/171ac6afd1f34693daef3efc.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.debian.org/KernelModuleBlacklisting" target="_blank"&gt;https://wiki.debian.org/KernelModuleBlacklisting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="debian"></category><category term="linux"></category></entry></feed>
