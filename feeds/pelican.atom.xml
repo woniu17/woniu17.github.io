@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>静如处子，动若脱兔</title><link href="http://linqingxiang.com/" rel="alternate"></link><link href="http://linqingxiang.com/feeds/pelican.atom.xml" rel="self"></link><id>http://linqingxiang.com/</id><updated>2015-05-29T19:54:00+08:00</updated><entry><title>Hello, world!</title><link href="http://linqingxiang.com/pelican/hello.html" rel="alternate"></link><updated>2015-05-29T19:54:00+08:00</updated><author><name>qingluck</name></author><id>tag:linqingxiang.com,2015-05-29:pelican/hello.html</id><summary type="html">&lt;h2&gt;Hello pelican and markdown.&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>静如处子，动若脱兔</title><link href="http://linqingxiang.com/" rel="alternate"></link><link href="http://linqingxiang.com/feeds/pelican.atom.xml" rel="self"></link><id>http://linqingxiang.com/</id><updated>2016-01-29T14:02:00+08:00</updated><entry><title>Pelican使用</title><link href="http://linqingxiang.com/pelican/pelican.html" rel="alternate"></link><updated>2016-01-29T14:02:00+08:00</updated><author><name>qingluck</name></author><id>tag:linqingxiang.com,2016-01-29:pelican/pelican.html</id><summary type="html">&lt;h3&gt;创建一个新博客&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkdir -p /path/to/myblog
+&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;写文章&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;vi /path/to/myblog/content/article.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;生成html&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;本地运行测试&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+./develop_server.sh start
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用浏览器访问&lt;code&gt;http://localhost:8000&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;关闭本地运行&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+./develop_server.sh stop
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="pelican"></category></entry><entry><title>Hello, world!</title><link href="http://linqingxiang.com/pelican/hello.html" rel="alternate"></link><updated>2015-05-29T19:54:00+08:00</updated><author><name>qingluck</name></author><id>tag:linqingxiang.com,2015-05-29:pelican/hello.html</id><summary type="html">&lt;h2&gt;Hello pelican and markdown.&lt;/h2&gt;
 &lt;h3&gt;My home page is &lt;a href="http://www.linqingxiang.com"&gt;www.linqingxiang.com&lt;/a&gt;&lt;/h3&gt;
 &lt;hr /&gt;
 &lt;h3&gt;&lt;em&gt;python&lt;/em&gt;&lt;sup id="fnref:python"&gt;&lt;a class="footnote-ref" href="#fn:python" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;strong&gt;学习&lt;/strong&gt;&lt;/h3&gt;

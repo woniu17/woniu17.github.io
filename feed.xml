@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>静如处子，动若脱兔</title><link>http://linqingxiang.com/</link><description></description><atom:link href="http://linqingxiang.com/feed.xml" rel="self"></atom:link><lastBuildDate>Sat, 26 Dec 2015 14:12:00 +0800</lastBuildDate><item><title>Git中的submodule命令</title><link>http://linqingxiang.com/git/git-submodule.html</link><description>&lt;p&gt;本文链接：&lt;a href="http://linqingxiang.com/git/git-submodule.html"&gt;Git中的&lt;code&gt;submodule&lt;/code&gt;命令&lt;/a&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>静如处子，动若脱兔</title><link>http://linqingxiang.com/</link><description></description><atom:link href="http://linqingxiang.com/feed.xml" rel="self"></atom:link><lastBuildDate>Fri, 29 Jan 2016 14:02:00 +0800</lastBuildDate><item><title>Pelican使用</title><link>http://linqingxiang.com/pelican/pelican.html</link><description>&lt;h3&gt;创建一个新博客&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;mkdir -p /path/to/myblog
+&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;写文章&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;vi /path/to/myblog/content/article.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;生成html&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;本地运行测试&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+./develop_server.sh start
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用浏览器访问&lt;code&gt;http://localhost:8000&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;关闭本地运行&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /path/to/myblog
+./develop_server.sh stop
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">qingluck</dc:creator><pubDate>Fri, 29 Jan 2016 14:02:00 +0800</pubDate><guid>tag:linqingxiang.com,2016-01-29:pelican/pelican.html</guid><category>pelican</category></item><item><title>Git中的submodule命令</title><link>http://linqingxiang.com/git/git-submodule.html</link><description>&lt;p&gt;本文链接：&lt;a href="http://linqingxiang.com/git/git-submodule.html"&gt;Git中的&lt;code&gt;submodule&lt;/code&gt;命令&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;本文以代码库&lt;a href="https://github.com/woniu17/woniu17-pelican" target="_blank"&gt;https://github.com/woniu17/woniu17-pelican&lt;/a&gt;为例,
 说明Git中&lt;code&gt;submodule&lt;/code&gt;命令的使用
 该代码库中包含子模块&lt;code&gt;pelican-themes/niu-x2-sidebar&lt;/code&gt;, &lt;code&gt;pelican-plugin&lt;/code&gt;以及&lt;code&gt;publish&lt;/code&gt;，每个子模块实际上是一个代码库，

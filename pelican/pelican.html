@@ -3,11 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>标签 debian - 静如处子，动若脱兔</title>
+        <title>Pelican使用 - 静如处子，动若脱兔</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="http://linqingxiang.com/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="http://linqingxiang.com/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://linqingxiang.com/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="http://linqingxiang.com/pelican/pelican.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://linqingxiang.com/theme/js/html5shiv.js"></script>
@@ -101,41 +102,95 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="niu2-index-title"><i class="icon-tag icon-lg"></i>debian</h1>
+                <h1 id="content-heading">Pelican使用</h1>
             </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <h3>创建一个新博客</h3>
+<div class="codehilite"><pre>mkdir -p /path/to/myblog
+<span class="nb">cd</span> /path/to/myblog
+</pre></div>
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="niu2-index-article">
-                    <div class="niu2-index-article-title">
-                        <span>
-                            <a href="http://linqingxiang.com/linux/lenovo-G450-install-wireless-driver-on-debian.html">在联想G450上安装无线驱动网卡(Debian7.8)</a>
-                        </span>
+
+<h3>写文章</h3>
+<div class="codehilite"><pre>vi /path/to/myblog/content/article.md
+</pre></div>
+
+
+<h3>生成html</h3>
+<div class="codehilite"><pre><span class="nb">cd</span> /path/to/myblog
+make html
+</pre></div>
+
+
+<h3>本地运行测试</h3>
+<div class="codehilite"><pre><span class="nb">cd</span> /path/to/myblog
+./develop_server.sh start
+</pre></div>
+
+
+<p>使用浏览器访问<code>http://localhost:8000</code></p>
+<h3>关闭本地运行</h3>
+<div class="codehilite"><pre><span class="nb">cd</span> /path/to/myblog
+./develop_server.sh stop
+</pre></div>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/pelican/pelican.html" data-title="Pelican使用" data-url="http://linqingxiang.com/pelican/pelican.html">
                     </div>
-                    <div class="niu2-meta-index">
-                        <span class="niu2-meta-date-index">
-                            <i class="icon-calendar"></i>2015-06-06
-                        </span>
-                        <span class="niu2-meta-category-index">
-                            <i class="icon-folder-open"></i>Linux
-                        </span>
-                        <span class="niu2-meta-tag-index">
-                            <i class="icon-tag"></i>
-                            <a href="http://linqingxiang.com/tag/debian.html">debian</a>
-                            <a href="http://linqingxiang.com/tag/linux.html">linux</a>
-                        </span>
-                    </div>
-                    <div class="niu2-article-summary">
-                        <p>在联想G450上安装无线驱动网卡(Debian7.8 32-bit)</p>
-                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'xxxxxx' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
                 </div>
 
+            </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2016-01-29 14:02</div>
+                    <div class="niu2-sidebar-label"><i class="icon-pencil" style="font-size: 1.05em;"></i>最后修改:</div>
+                    <div class="niu2-sidebar-value">2016-01-29 14:13</div>
+                    <div class="niu2-sidebar-label"><i class="icon-open-folder"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://linqingxiang.com/pelican/index.html">Pelican</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://linqingxiang.com/tag/pelican.html">pelican</a><sup>2</sup></div>
+                </div>
 
-
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ul id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">Pelican使用</a></li>
+                        
+                        <li><a href="#content-comments">评论</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
             </div>
         </div>
 
         <div class="niu2-footer">
-            <div id="body-footer" class="col-md-8 col-md-offset-2">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
                 <hr/>
                 <p>
                     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
@@ -181,6 +236,7 @@
         <script type="text/javascript" src="http://linqingxiang.com/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="http://linqingxiang.com/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
+            onContentLoaded();
         </script>
     </body>
 </html>
