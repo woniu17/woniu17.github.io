@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "关于：About"
+title: "个人简历"
 ---
 
 # 个人信息
