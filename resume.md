@@ -5,7 +5,7 @@ title: "个人简历"
 
 # 个人信息
 - 林清祥/男/1989
-- 研究生&本科/福州大学计算机系
+- 研究生/福州大学计算机系 [研究方向 软件定义网络(SDN)]
 - 工作年限：2年
 - 个人博客：[http://m.linqingxiang.com](http://m.linqingxiang.com)
 - Github：[https://github.com/woniu17](https://github.com/woniu17)
